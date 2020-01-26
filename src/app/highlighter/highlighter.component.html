@@ -1,1 +1,71 @@
-<p>highlighter works!</p>
+<div class="highlighter">
+
+  <!--
+    <div class="colors">
+      <button
+        class="box"
+        type="button"
+        style="background-color: red"
+        (click)="highlightText('red')"
+      ></button>
+      <button
+        class="box"
+        type="button"
+        style="background-color: yellow"
+        (click)="highlightText('yellow')"
+      ></button>
+      <button
+        class="box"
+        type="button"
+        style="background-color: #a8d08d"
+        (click)="highlightText('green')"
+      ></button>
+    </div>
+    -->
+
+  <ng-container *ngTemplateOutlet="buttonsTemplate; context: {callFunction: highlightText()}"></ng-container>
+
+  <span id="highlighter">Hello <span>World</span></span>
+
+  <div class="source">
+    <textarea rows="6" cols="85" #sourceTextArea></textarea>
+
+    <div [innerHTML]="highlightedTextDiv"></div>
+
+    <!--
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+    -->
+  </div>
+
+  <ng-container *ngTemplateOutlet="buttonsTemplate; context: {callFunction: showText()}"></ng-container>
+
+  <div class="target">
+
+    <textarea rows="6" cols="85" #targetTextArea [ngModel]="getHighlightedText()">
+    </textarea>
+    <div [innerHTML]=""></div>
+  </div>
+</div>
+
+<ng-template #buttonsTemplate let-callFunction="callFunction">
+  <div class="colors">
+    <button
+      class="box"
+      type="button"
+      style="background-color: red"
+      (click)="callFunction('red')"
+    ></button>
+    <button
+      class="box"
+      type="button"
+      style="background-color: yellow"
+      (click)="callFunction('yellow')"
+    ></button>
+    <button
+      class="box"
+      type="button"
+      style="background-color: #a8d08d"
+      (click)="callFunction('green')"
+    ></button>
+  </div>
+</ng-template>

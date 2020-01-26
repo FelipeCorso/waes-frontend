@@ -1,6 +1,6 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
-import {StarshipsComponent} from './starships/starships.component';
+import {HighlighterComponent} from './highlighter/highlighter.component';
 
 const routes: Routes = [
   {
@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'highlighter',
-    component: HighlComponent
+    component: HighlighterComponent
   }
 ];
 
