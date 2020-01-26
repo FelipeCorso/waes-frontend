@@ -40,11 +40,27 @@
   <ng-container *ngTemplateOutlet="buttonsTemplate; context: {callFunction: showText()}"></ng-container>
 
   <div class="target">
+    <textarea rows="6" cols="85" #targetTextArea></textarea>
 
-    <textarea rows="6" cols="85" #targetTextArea [ngModel]="getHighlightedText()">
-    </textarea>
-    <div [innerHTML]=""></div>
+    <div>
+      <ng-container
+        *ngFor="let color of colors"
+      >
+        <ng-template
+          ngFor let-text [ngForOf]="highlightedText[color].text"
+          [ngIf]="highlightedText[color].showText"
+        >
+          <span
+            [ngClass]="color.toString().toLowerCase()"
+          >
+            {{text}}
+          </span>
+          <br>
+        </ng-template>
+      </ng-container>
+    </div>
   </div>
+  {{highlightedText | json}}
 </div>
 
 <ng-template #buttonsTemplate let-callFunction="callFunction">
@@ -53,19 +69,19 @@
       class="box"
       type="button"
       style="background-color: red"
-      (click)="callFunction('red')"
+      (click)="callFunction(Color.RED)"
     ></button>
     <button
       class="box"
       type="button"
       style="background-color: yellow"
-      (click)="callFunction('yellow')"
+      (click)="callFunction(Color.YELLOW)"
     ></button>
     <button
       class="box"
       type="button"
       style="background-color: #a8d08d"
-      (click)="callFunction('green')"
+      (click)="callFunction(Color.GREEN)"
     ></button>
   </div>
 </ng-template>
