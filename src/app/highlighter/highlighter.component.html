@@ -17,15 +17,18 @@
   <ng-container *ngTemplateOutlet="buttonsTemplate; context: {callFunction: showText()}"></ng-container>
 
   <div class="target">
-    <textarea rows="6" cols="85" #targetTextArea></textarea>
+    <textarea rows="6" cols="85" #targetTextArea [ngModel]="getHighlightedText()"
+              style="padding-left: 2px;"
+    >
+    </textarea>
 
-    <div class="highlighted-text highlighted-filtered">
+    <div class="highlighted-text highlighted-filtered" id="highlightedFilteredDiv">
       <ng-container
         *ngFor="let color of colors"
       >
         <span *ngFor="let text of highlightedText[color].text"
-             [ngClass]="color.toString().toLowerCase()"
-             [hidden]="!highlightedText[color].showText"
+              [ngClass]="color.toString().toLowerCase()"
+              [hidden]="!highlightedText[color].showText"
         >
           {{text}}
         </span>

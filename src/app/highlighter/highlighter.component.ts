@@ -24,9 +24,7 @@ export class HighlighterComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.highlightedText[Color.RED] = {showText: true, text: []};
-    this.highlightedText[Color.YELLOW] = {showText: true, text: []};
-    this.highlightedText[Color.GREEN] = {showText: true, text: []};
+    this.resetHighlightedText();
   }
 
   ngAfterViewInit(): void {
@@ -59,13 +57,16 @@ export class HighlighterComponent implements OnInit, AfterViewInit {
   };
 
   getHighlightedText(): string {
-    return Object.values(this.highlightedText)
-      .filter(color => color.showText)
-      .map(color => color.text.join('')).join('');
+    return document.getElementById('highlightedFilteredDiv').innerText;
   }
 
   private textAreaChange(): void {
     this.highlightedTextDiv = this.sourceTextArea.nativeElement.value;
+    this.resetHighlightedText();
+  }
+
+  private resetHighlightedText() {
+    Object.keys(Color).forEach((color: Color) => this.highlightedText[color] = {showText: true, text: []});
   }
 }
 
