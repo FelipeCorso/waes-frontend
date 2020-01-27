@@ -35,10 +35,6 @@ export class HighlighterComponent implements OnInit, AfterViewInit {
     });
   }
 
-  textAreaChange(): void {
-    this.highlightedTextDiv = this.sourceTextArea.nativeElement.value;
-  }
-
   highlightText = () => {
     return (color: Color): void => {
       if (this.sourceTextArea.nativeElement.value) {
@@ -66,6 +62,10 @@ export class HighlighterComponent implements OnInit, AfterViewInit {
     return Object.values(this.highlightedText)
       .filter(color => color.showText)
       .map(color => color.text.join('')).join('');
+  }
+
+  private textAreaChange(): void {
+    this.highlightedTextDiv = this.sourceTextArea.nativeElement.value;
   }
 }
 
