@@ -2,16 +2,10 @@
 
   <ng-container *ngTemplateOutlet="buttonsTemplate; context: {callFunction: highlightText()}"></ng-container>
 
-  <span id="highlighter">Hello <span>World</span></span>
-
   <div class="source">
     <textarea rows="6" cols="85" #sourceTextArea></textarea>
 
     <div class="highlighted-text" [innerHTML]="highlightedTextDiv"></div>
-
-    <!--
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-    -->
   </div>
 
   <ng-container *ngTemplateOutlet="buttonsTemplate; context: {callFunction: showText()}"></ng-container>
@@ -35,7 +29,6 @@
       </ng-container>
     </div>
   </div>
-  {{highlightedText | json}}
 </div>
 
 <ng-template #buttonsTemplate let-callFunction="callFunction">
